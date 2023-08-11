@@ -72,8 +72,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		enemies1 = new ArrayList<Enemy1>();
 		
 		//INICIALIZANDO OBJETOS
-		player = new Player(0, 0, 16, 16, 1, Entity.PLAYER_SPRITE_RIGHT[0]);
-		world = new World();
+		player = new Player((Game.WIDTH / 2) - 16 , Game.HEIGHT - 16, 16, 16, 1.3, Entity.PLAYER_SPRITE[0]);
+		//world = new World();
 		ui = new UI();
 		
 		entities.add(player);
@@ -150,7 +150,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//RENDER DO GAME
-		world.render(g);
+		//world.render(g);
 		Collections.sort(entities, Entity.nodeSorter);	//Organizar camadas de render
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -207,12 +207,24 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 	//TECLADO
 	@Override
 	public void keyPressed(KeyEvent e) {
-
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D ) {
+			Player.right = true;
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			Player.left = true;
+		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			Player.shoot = true;
+		}
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			Player.right = false;
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			Player.left = false;
+		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			Player.shoot = false;
+		}
 	}
 
 	@Override
@@ -231,14 +243,24 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		
+		if(e.getButton() == MouseEvent.BUTTON1) {			// Botao direito do mouse
+			Player.isPressed = true;
+		}else if (e.getButton() == MouseEvent.BUTTON3) { 	// Botao esquedo do mouse
+			Player.power = true;
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		/*
+		if(e.getButton() == MouseEvent.BUTTON1) {			// Botao direito do mouse
+			Player.isPressed = false;
+		}else if (e.getButton() == MouseEvent.BUTTON3) { 	// Botao esquedo do mouse
+			Player.power = false;
+		}
+		*/
 	}
+		
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
