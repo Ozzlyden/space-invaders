@@ -62,6 +62,7 @@ public class Enemy2 extends Entity{
 					if(life == 0) {
 						Explosion explosion = new Explosion(x, y, 16, 16, 0, null);
 						Game.entities.add(explosion);
+						Game.score++;
 						Game.entities.remove(this);
 						return;
 					}
@@ -93,11 +94,8 @@ public class Enemy2 extends Entity{
 	
 	
 	public void render(Graphics g) {
-		if(!isDamaged) {
-			g.drawImage(ENEMY2[index],this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}
-		else {
-			//g.drawImage(ENEMY2_FEEDBACK[0],this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}
+		
+		g.drawImage(ENEMY2[index],this.getX() - Camera.x, this.getY() - Camera.y, null);
+		
 	}
 }

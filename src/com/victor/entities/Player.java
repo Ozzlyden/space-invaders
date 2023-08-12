@@ -10,7 +10,7 @@ public class Player extends Entity {
 	
 	public static boolean right, left, moved, isShooting, isPressed , power, isDamaged;
 	
-	public static int lifePlayer = 5;
+	public static int lifePlayer = 10;
 	public int dir = 1;
 	
 	private int framesAnimation = 0;
@@ -77,7 +77,7 @@ public class Player extends Entity {
 		// SISTEMA DE DANO
 		for(int i = 0; i < Game.entities.size(); i++) {
 			Entity e = Game.entities.get(i);
-			if(e instanceof Enemy1) {
+			if(e instanceof Enemy2) {
 				if(Entity.isColliding(this, e)) {
 					lifePlayer--;
 					Game.entities.remove(e);

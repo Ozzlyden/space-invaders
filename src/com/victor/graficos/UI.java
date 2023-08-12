@@ -57,9 +57,21 @@ public class UI {
 		}
 		
 		/*
-		g.setFont(new Font("arial", Font.BOLD, 23));
-		g.drawString(formatTime, 30, 34);
+		// CONTADOR RENDER
+		g.setColor(Color.white);
+		g.setFont(new Font("arial", Font.BOLD, 20));
+		g.drawString(formatTime, 10, 34);
 		*/
+		
+		// SCORE
+		g.setColor(Color.white);
+		g.setFont(new Font("arial", Font.BOLD, 20));
+		g.drawString("score: " + Game.score, 250, 34);
+		
+		// PLAYER LIFE
+		g.setColor(Color.white);
+		g.setFont(new Font("arial", Font.BOLD, 20));
+		g.drawString("life: " + Player.lifePlayer, 10, 34);
 	}
 	
 }

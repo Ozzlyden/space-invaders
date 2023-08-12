@@ -7,8 +7,8 @@ import com.victor.world.World;
 
 public class EnemySpawn {
 	
-	public int targetTimeEnemy1 = 60 * 2;
-	public int targetTimeEnemy2 = 60 * 4;
+	public int targetTimeEnemy1 = 60 * 3;
+	public int targetTimeEnemy2 = 60 * 2;
 	public int curTimeEn1 = 0;
 	public int curTimeEn2 = 0;
 
@@ -29,12 +29,14 @@ public class EnemySpawn {
 		}
 		
 		// SPAWN ENEMY2
-		else if(curTimeEn2 == targetTimeEnemy2) {
+		if(curTimeEn2 == targetTimeEnemy2) {
 			curTimeEn2 = 0;
+			targetTimeEnemy2 = Entity.rand.nextInt((200 - 100) + 200);
+			
 			int xx = Entity.rand.nextInt(Game.WIDTH - 16);	// -16 para nao sair da tela
 			int yy = 0;
 		
-			Enemy2 enemy2 = new Enemy2(xx, yy, 16, 16, 0.2, Entity.ENEMY2);
+			Enemy2 enemy2 = new Enemy2(xx, yy, 16, 16, Entity.rand.nextDouble((0.8 - 0.5) + 0.5), Entity.ENEMY2);
 			Game.entities.add(enemy2);
 		}
 	}

@@ -59,6 +59,7 @@ public class Enemy1 extends Entity{
 					Game.entities.remove(e);
 					isDamaged = true;
 					if(life == 0) {
+						Game.score++;
 						Game.entities.remove(this);
 						return;
 					}
