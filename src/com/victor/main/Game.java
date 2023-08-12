@@ -41,14 +41,16 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 	
 	private BufferedImage image;
 	
-	public static World world;
 	public static List<Entity> entities;
 	public static List<Enemy1> enemies1;
 	
+	public static World world;
 	public static Spritesheet spritesheet;
 	public static Player player;
+	public EnemySpawn enemySpawn;
 	
-	public UI ui;			
+	public UI ui;	
+	
 	
 	public Game() {
 		
@@ -73,8 +75,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		
 		//INICIALIZANDO OBJETOS
 		player = new Player((Game.WIDTH / 2) - 16 , Game.HEIGHT - 16, 16, 16, 1.3, Entity.PLAYER_SPRITE[0]);
-		//world = new World();
+		world = new World("/map1.png");
 		ui = new UI();
+		enemySpawn = new EnemySpawn();
 		
 		entities.add(player);
 	}
@@ -131,7 +134,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 			Entity e = entities.get(i);
 			e.tick();
 		}
-		
+		enemySpawn.tick();
 		ui.tick();
 	}
 	
@@ -150,7 +153,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		
 		//RENDER DO GAME
-		//world.render(g);
+		world.render(g);
+		g.drawImage(world.map ,0, 0, null );
 		Collections.sort(entities, Entity.nodeSorter);	//Organizar camadas de render
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);

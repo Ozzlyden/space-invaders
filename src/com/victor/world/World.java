@@ -21,9 +21,23 @@ public class World {
 	public static int dia = 0, noite = 1;
 	public static int CICLO = dia; 
 	
+	public BufferedImage map;
 	
-	
-	public World(){
+	public World(String path){
+		
+		try {
+			//IDENTIFICACAO DE CADA PIXEL DO MAP
+			map = ImageIO.read(getClass().getResourceAsStream(path));
+			//Calcular a area de px (20px por 20px) e colocando em um Array
+			int [] pixels = new int[map.getWidth() * map.getHeight()];	
+			//Identificacao de cores
+			map.getRGB(0, 0, map.getWidth(), map.getHeight(), pixels, 0, map.getWidth());
+
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*
 		
 		// DIMENSOES MUNDO
