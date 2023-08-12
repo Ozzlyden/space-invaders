@@ -216,7 +216,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			Player.left = true;
 		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Player.shoot = true;
+			Player.isShooting = true;
+		}else if(e.getKeyCode() == KeyEvent.VK_Z) {
+			Player.power = true;
 		}
 	}
 	
@@ -227,7 +229,9 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			Player.left = false;
 		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			Player.shoot = false;
+			Player.isShooting = false;
+		}else if(e.getKeyCode() == KeyEvent.VK_Z) {
+			Player.power = false;
 		}
 	}
 
@@ -248,7 +252,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1) {			// Botao direito do mouse
-			Player.isPressed = true;
+			Player.isShooting = true;
 		}else if (e.getButton() == MouseEvent.BUTTON3) { 	// Botao esquedo do mouse
 			Player.power = true;
 		}
@@ -256,13 +260,11 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		/*
 		if(e.getButton() == MouseEvent.BUTTON1) {			// Botao direito do mouse
-			Player.isPressed = false;
+			Player.isShooting = false;
 		}else if (e.getButton() == MouseEvent.BUTTON3) { 	// Botao esquedo do mouse
 			Player.power = false;
 		}
-		*/
 	}
 		
 

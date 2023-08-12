@@ -38,7 +38,15 @@ public class Enemy1 extends Entity{
 		// CAMADA DE RENDER
 		depth = 2;
 		
+		// LOGICA DE MOVIMENTACAO
 		y+=speed;
+		
+		// OTIMISACAO
+		if(y >= Game.HEIGHT) {
+			Game.entities.remove(this);
+			return;
+		}
+		
 	
 		//LOGICA ANIMACAO
 		frames++;
@@ -48,11 +56,11 @@ public class Enemy1 extends Entity{
 				if(index > maxIndex)
 					index = 0;
 			}
+		
+		
 	}
 	
-	public boolean test(){
-		return false;
-	}
+
 	
 	public void render(Graphics g) {
 		if(!isDamaged)

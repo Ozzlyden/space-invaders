@@ -8,7 +8,7 @@ import com.victor.world.Camera;
 
 public class Player extends Entity {
 	
-	public static boolean right, left, shoot, moved, isPressed, power;
+	public static boolean right, left, moved, isShooting, isPressed , power;
 	
 	public int dir = 1;
 	
@@ -52,6 +52,25 @@ public class Player extends Entity {
 			x = -16;
 		}else if(x + 16 < 0) {
 			x = Game.WIDTH;
+		}
+		
+		// LOGICA DE TIRO
+		if(isShooting) {
+			isShooting = false;
+			isPressed = true;
+			int xx = (int) (this.getX() + 7.9);
+			int yy = this.getY();
+			Bullet bullet = new Bullet(xx, yy, 1, 3, 4, null);
+			Game.entities.add(bullet);
+		}
+		
+		if(power) {
+			power = false;
+			isPressed = true;
+			int xx = (int) (this.getX() + 7.9);
+			int yy = this.getY();
+			Bullet bullet = new Bullet(xx, yy, 1, 3, 8, null);
+			Game.entities.add(bullet);
 		}
 		
 		// LOGICA ANIMACAO
