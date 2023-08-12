@@ -18,6 +18,7 @@ public class Entity {
 	public static BufferedImage[] PLAYER_SPRITE = {Game.spritesheet.getSprite(0, 32, 16, 16), Game.spritesheet.getSprite(16, 32, 16, 16)};
 	
 	public static BufferedImage ENEMY1 = Game.spritesheet.getSprite(0,80, 16, 16);
+	public static BufferedImage ENEMY2 = Game.spritesheet.getSprite(0, 112, 16, 16);
 
 	public double x;
 	public double y;

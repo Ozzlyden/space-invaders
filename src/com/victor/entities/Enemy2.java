@@ -12,28 +12,29 @@ import com.victor.world.Tile;
 import com.victor.world.WallTile;
 import com.victor.world.World;
 
-public class Enemy1 extends Entity{
+public class Enemy2 extends Entity{
 	
-	public boolean isDamaged = false;
+	public boolean isDamaged;
 	public int damageFrames = 8, damageCurrent = 0;
-	private int frames = 0, maxFrames = 15, index = 0, maxIndex = 1;
+	private int frames = 0, maxFrames = 15, index = 0, maxIndex = 3;
 	
-	public int life = 3;
+	public int life = 5;
 	
-	public BufferedImage[] ENEMY1;
-	public BufferedImage[] ENEMY1_FEEDBACK;
+	public BufferedImage[] ENEMY2;
+	public BufferedImage[] ENEMY2_FEEDBACK;
 
-	public Enemy1(double x, double y, int width, int height, double speed, BufferedImage sprite) {
+	public Enemy2(double x, double y, int width, int height, double speed, BufferedImage sprite) {
 		super(x, y, width, height, speed, null);
 		// TODO Auto-generated constructor stub
 		
-		ENEMY1 = new BufferedImage[2];
-		ENEMY1_FEEDBACK = new BufferedImage[2];
+		ENEMY2 = new BufferedImage[4];
+		ENEMY2_FEEDBACK = new BufferedImage[2];
 			
-		ENEMY1[0] = Game.spritesheet.getSprite(0, 80, 16, 16);
-		ENEMY1[1] = Game.spritesheet.getSprite(16, 80, 16, 16);
-		ENEMY1_FEEDBACK[0] = Game.spritesheet.getSprite(0, 96, 16, 16);
-		
+		ENEMY2[0] = Game.spritesheet.getSprite(0, 112, 16, 16);
+		ENEMY2[1] = Game.spritesheet.getSprite(16, 112, 16, 16);
+		ENEMY2[2] = Game.spritesheet.getSprite(32, 112, 16, 16);
+		ENEMY2[3] = Game.spritesheet.getSprite(48, 112, 16, 16);
+
 	}
 
 	public void tick() {
@@ -59,6 +60,8 @@ public class Enemy1 extends Entity{
 					Game.entities.remove(e);
 					isDamaged = true;
 					if(life == 0) {
+						Explosion explosion = new Explosion(x, y, 16, 16, 0, null);
+						Game.entities.add(explosion);
 						Game.entities.remove(this);
 						return;
 					}
@@ -85,18 +88,16 @@ public class Enemy1 extends Entity{
 				this.isDamaged = false;
 			}
 		}
-	
 		
 	}
 	
-
 	
 	public void render(Graphics g) {
 		if(!isDamaged) {
-			g.drawImage(ENEMY1[index],this.getX() - Camera.x, this.getY() - Camera.y, null);
-		}else{
-			g.drawImage(ENEMY1_FEEDBACK[0],this.getX() - Camera.x, this.getY() - Camera.y, null);
+			g.drawImage(ENEMY2[index],this.getX() - Camera.x, this.getY() - Camera.y, null);
+		}
+		else {
+			//g.drawImage(ENEMY2_FEEDBACK[0],this.getX() - Camera.x, this.getY() - Camera.y, null);
 		}
 	}
-	
 }

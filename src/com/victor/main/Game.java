@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 	private BufferedImage image;
 	
 	public static List<Entity> entities;
-	public static List<Enemy1> enemies1;
+	//public static List<Enemy1> enemies1;
 	
 	public static World world;
 	public static Spritesheet spritesheet;
@@ -71,7 +71,7 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		
 		//Instanciando Entities
 		entities = new ArrayList<Entity>();
-		enemies1 = new ArrayList<Enemy1>();
+		//enemies1 = new ArrayList<Enemy1>();
 		
 		//INICIALIZANDO OBJETOS
 		player = new Player((Game.WIDTH / 2) - 16 , Game.HEIGHT - 16, 16, 16, 1.3, Entity.PLAYER_SPRITE[0]);
