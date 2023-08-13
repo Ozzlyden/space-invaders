@@ -138,6 +138,18 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		}
 		enemySpawn.tick();
 		ui.tick();
+		
+		// EFEITO PARALLAX
+		world.mapY-=world.mapSpd;
+		
+		if(world.mapY + Game.HEIGHT <= 0) {
+			world.mapY = 160;
+		}
+		
+		world.mapY2-=world.mapSpd;
+		if(world.mapY2 + Game.HEIGHT <= 0) {
+			world.mapY2 = 160;
+		}
 	}
 	
 	
@@ -156,7 +168,8 @@ public class Game extends Canvas implements Runnable,KeyListener,MouseListener, 
 		
 		//RENDER DO GAME
 		world.render(g);
-		g.drawImage(world.map ,0, 0, null );
+		g.drawImage(world.map ,0, world.mapY, null );
+		g.drawImage(world.map2 ,0, world.mapY2, null );
 		Collections.sort(entities, Entity.nodeSorter);	//Organizar camadas de render
 		for(int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);

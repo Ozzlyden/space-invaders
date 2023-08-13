@@ -21,17 +21,23 @@ public class World {
 	public static int dia = 0, noite = 1;
 	public static int CICLO = dia; 
 	
-	public BufferedImage map;
+	public BufferedImage map, map2;
+	
+	public int mapY = 0;
+	public int mapY2 = 160;
+	public int mapSpd = 1;
 	
 	public World(String path){
 		
 		try {
 			//IDENTIFICACAO DE CADA PIXEL DO MAP
 			map = ImageIO.read(getClass().getResourceAsStream(path));
+			map2 = ImageIO.read(getClass().getResourceAsStream("/map1.png"));
 			//Calcular a area de px (20px por 20px) e colocando em um Array
 			int [] pixels = new int[map.getWidth() * map.getHeight()];	
 			//Identificacao de cores
 			map.getRGB(0, 0, map.getWidth(), map.getHeight(), pixels, 0, map.getWidth());
+			map2.getRGB(0, 0, map2.getWidth(), map2.getHeight(), pixels, 0, map2.getWidth());
 
 
 		} catch (IOException e) {
